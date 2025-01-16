@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Magazzino</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Gestione Magazzino</h1>
+
+    <h2>Inventario</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Prodotto</th>
+                <th>Quantità</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prodotto, quantita in magazzino.items() %}
+                <tr>
+                    <td>{{ prodotto }}</td>
+                    <td>{{ quantita }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Aggiungi Nuovo Prodotto</h2>
+    <form action="/aggiungi" method="POST">
+        <label for="prodotto">Nome prodotto:</label>
+        <input type="text" id="prodotto" name="prodotto" required>
+        <label for="quantita">Quantità:</label>
+        <input type="number" id="quantita" name="quantita" required>
+        <button type="submit">Aggiungi</button>
+    </form>
+
+    <h2>Aggiorna Quantità Prodotto</h2>
+    <form action="/aggiorna" method="POST">
+        <label for="prodotto">Nome prodotto:</label>
+        <input type="text" id="prodotto" name="prodotto" required>
+        <label for="quantita">Nuova Quantità:</label>
+        <input type="number" id="quantita" name="quantita" required>
+        <button type="submit">Aggiorna</button>
+    </form>
+</body>
+</html>
